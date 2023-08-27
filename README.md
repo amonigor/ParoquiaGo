@@ -11,3 +11,6 @@ Verificar se cumpre com os requisitos para o desenvolvimento, se sim basta rodar
 ```bash
 npm start
 ```
+
+### Importante lembrar
+O repositório está configurado com husky para executar os testes e fazer o lint do código antes de um evento de push, então se seu push estiver acusando erro, confira se seus testes não possuem erros ou se seu código está corretamente escrito.
