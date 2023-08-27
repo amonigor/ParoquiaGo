@@ -31,12 +31,12 @@
     "react-test-renderer": "18.2.0",
     "typescript": "4.8.4"
   },
-  "engines": {
-    "node": ">=16"
-  },
   "husky": {
     "hooks": {
       "pre-push": "npm run test && npm run lint"
     }
+  },
+  "engines": {
+    "node": ">=16"
   }
 }
