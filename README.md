@@ -1,5 +1,5 @@
 ### Requisitos para desenvolvimento:
-- Java 20
+- Java 17
 - Android SDK 33 (Tiramisu)
 - Node v20.5.1 / npm 9.8.0
 
