@@ -9,6 +9,11 @@ Não esqueça de informar o caminho para o Android SDK dentro de ```android/loca
 Para conseguir contribuir com o projeto, é necessário algumas configurações iniciais.
 - Adicione a [chave de API do Google Maps](https://console.cloud.google.com/apis/library) no .env do projeto. Dentro da raiz do repositório você consegue achar um arquivo chamado ```.env.example```, copie o conteúdo desse arquivo e substitua os valores coringas pelo valores reais.
 - Dentro de ```android/local.properties```, adicione o caminho para o Android SDK no seu sistema, seguindo o seguinte formado: ```sdk.dir = /caminho/do/sdk```
+- Rode o seguinte comando para instalar as dependências do projeto.
+
+    ```bash
+    npm i
+    ```
 - Agora para poder contribuir com o projeto, execute o seguinte comando para poder rodar as verificações "pre-push", mantendo assim a qualidade do software escrito.
 
     ```bash
