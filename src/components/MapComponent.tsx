@@ -48,7 +48,7 @@ export const MapComponent = () => {
         label={church.label}
         latitude={church.latitude}
         longitude={church.longitude}
-        icon={require('../images/church-pin.png')}
+        icon={require('../assets/images/church-pin.png')}
       />
     ));
   };
@@ -100,7 +100,7 @@ export const MapComponent = () => {
       {!!userLocation ? (
         <MapPin
           label="Você está aqui!"
-          icon={require('../images/user-pin.png')}
+          icon={require('../assets/images/user-pin.png')}
           latitude={userLocation.latitude}
           longitude={userLocation.longitude}
         />
