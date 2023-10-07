@@ -14,11 +14,6 @@ Para conseguir contribuir com o projeto, é necessário algumas configurações 
     ```bash
     npm i
     ```
-- Agora para poder contribuir com o projeto, execute o seguinte comando para poder rodar as verificações "pre-push", mantendo assim a qualidade do software escrito.
-
-    ```bash
-    npx husky install
-    ```
 
 ### Para rodar o projeto localmente:
 Verificar se cumpre com os requisitos para o desenvolvimento, se sim basta rodar o comando abaixo e iniciar o emulador do android.
