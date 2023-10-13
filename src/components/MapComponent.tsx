@@ -90,8 +90,8 @@ export const MapComponent = () => {
       region={{
         latitude: userLocation?.latitude ?? -23.96095,
         longitude: userLocation?.longitude ?? -46.38919,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
+        latitudeDelta: 0.003,
+        longitudeDelta: 0.003,
       }}
       zoomEnabled={true}
       pitchEnabled={true}
