@@ -97,6 +97,8 @@ export const MapComponent = () => {
       pitchEnabled={true}
       rotateEnabled={true}
       showsUserLocation={true}
+      loadingEnabled={true}
+      showsMyLocationButton={false}
       toolbarEnabled={false}>
       {getChurchListComponent()}
     </MapView>
