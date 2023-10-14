@@ -95,9 +95,17 @@ export const MapComponent = () => {
       }}
       zoomEnabled={true}
       pitchEnabled={true}
-      rotateEnabled={true}
-      showsUserLocation={true}
-      toolbarEnabled={false}>
+      rotateEnabled={true}>
+      {!!userLocation ? (
+        <MapPin
+          label="Você está aqui!"
+          icon={require('../assets/images/user-pin.png')}
+          latitude={userLocation.latitude}
+          longitude={userLocation.longitude}
+        />
+      ) : (
+        <></>
+      )}
       {getChurchListComponent()}
     </MapView>
   );
