@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, StatusBar, View } from 'react-native';
-import { MapComponent } from './components/MapComponent';
+import { MapComponent } from './components/Map/MapComponent';
 
 const styles = StyleSheet.create({
   container: {

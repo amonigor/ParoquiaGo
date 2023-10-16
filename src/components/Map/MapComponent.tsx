@@ -48,7 +48,7 @@ export const MapComponent = () => {
         label={church.label}
         latitude={church.latitude}
         longitude={church.longitude}
-        icon={require('../assets/images/church-pin.png')}
+        icon={require('../../assets/images/church-pin.png')}
       />
     ));
   };
