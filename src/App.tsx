@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, StatusBar, View } from 'react-native';
 import { MapComponent } from './components/Map/MapComponent';
+import { SearchAreaContainer } from './components/SearchArea/SearchAreaContainer';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,6 +16,7 @@ const App = (): JSX.Element => {
       <StatusBar barStyle={'dark-content'} />
       <View style={styles.container}>
         <MapComponent />
+        <SearchAreaContainer />
       </View>
     </SafeAreaView>
   );
