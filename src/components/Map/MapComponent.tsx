@@ -1,13 +1,10 @@
 import Geolocation from '@react-native-community/geolocation';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import { MapPin } from './MapPin';
-
-interface UserLocationType {
-  latitude: number;
-  longitude: number;
-}
+import { useAtom } from 'jotai';
+import { userLocationAtom } from '../../atoms/map';
 
 interface ChurchType {
   id: string;
@@ -17,7 +14,7 @@ interface ChurchType {
 }
 
 export const MapComponent = () => {
-  const [userLocation, setUserLocation] = useState<UserLocationType>();
+  const [userLocation, setUserLocation] = useAtom(userLocationAtom);
   const [watchPositionId, setWatchPositionId] = useState<number>(0);
 
   const churchList: ChurchType[] = [
@@ -61,7 +58,7 @@ export const MapComponent = () => {
     });
   };
 
-  const watchPosition = () => {
+  const watchPosition = useCallback(() => {
     setWatchPositionId(
       Geolocation.watchPosition(
         res => {
@@ -74,7 +71,7 @@ export const MapComponent = () => {
         { enableHighAccuracy: true, timeout: 1500, maximumAge: 10000 },
       ),
     );
-  };
+  }, [setUserLocation]);
 
   useEffect(() => {
     setGeolocaltionConfig();
@@ -83,7 +80,7 @@ export const MapComponent = () => {
     return () => {
       Geolocation.clearWatch(watchPositionId);
     };
-  }, [watchPositionId]);
+  }, [watchPosition, watchPositionId]);
 
   return (
     <MapView
