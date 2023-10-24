@@ -1,12 +1,16 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import { GpsStatusComponent } from './GpsStatus/GpsStatusComponent';
 import { styles } from './SearchAreaStyle';
 
 export const SearchAreaContainer = () => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <View style={{ ...styles.button, ...styles.withShadows }}>
+      <View style={styles.rightItems}>
+        <GpsStatusComponent />
+      </View>
+      <TouchableOpacity activeOpacity={0.95}>
+        <View style={{ ...styles.button }}>
           <Text style={styles.buttonText}>Buscar mais próximo</Text>
         </View>
       </TouchableOpacity>
