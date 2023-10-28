@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { GpsStatusComponent } from './GpsStatus/GpsStatusComponent';
 import { styles } from './SearchAreaStyle';
 import { GpsRollbackComponent } from './GpsRollback/GpsRollbackComponent';
 import { useAtomValue } from 'jotai';
 import { userLocationAtom } from '../../atoms/map';
+import { SearchCloserComponent } from './SearchCloser/SearchCloserComponent';
 
 export const SearchAreaContainer = () => {
   const userLocation = useAtomValue(userLocationAtom);
@@ -15,15 +16,7 @@ export const SearchAreaContainer = () => {
         <GpsStatusComponent />
         {!!userLocation ? <GpsRollbackComponent /> : <></>}
       </View>
-      {!!userLocation ? (
-        <TouchableOpacity activeOpacity={0.75}>
-          <View style={{ ...styles.button, ...styles.withShadows }}>
-            <Text style={styles.buttonText}>Buscar mais próximo</Text>
-          </View>
-        </TouchableOpacity>
-      ) : (
-        <></>
-      )}
+      {!!userLocation ? <SearchCloserComponent /> : <></>}
       <View style={{ ...styles.searchArea, ...styles.withShadows }}>
         <Text>Placeholder text</Text>
       </View>

@@ -16,18 +16,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
   },
-  button: {
-    backgroundColor: '#06C1EA',
-    alignSelf: 'center',
-    paddingHorizontal: 40,
-    paddingVertical: 15,
-    borderRadius: 20,
-  },
-  buttonText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-  },
   withShadows: {
     shadowColor: '#000',
     shadowOffset: {
