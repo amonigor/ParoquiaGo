@@ -93,7 +93,7 @@ export const MapComponent = () => {
       }}
       zoomEnabled={true}
       pitchEnabled={true}
-      rotateEnabled={true}
+      rotateEnabled={false}
       showsUserLocation={true}
       loadingEnabled={true}
       showsMyLocationButton={false}

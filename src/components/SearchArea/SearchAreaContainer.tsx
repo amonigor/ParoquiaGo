@@ -10,7 +10,7 @@ export const SearchAreaContainer = () => {
         <GpsStatusComponent />
       </View>
       <TouchableOpacity activeOpacity={0.95}>
-        <View style={{ ...styles.button }}>
+        <View style={{ ...styles.button, ...styles.withShadows }}>
           <Text style={styles.buttonText}>Buscar mais próximo</Text>
         </View>
       </TouchableOpacity>
