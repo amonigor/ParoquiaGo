@@ -6,6 +6,7 @@ import { GpsStatusComponent } from './GpsStatus/GpsStatusComponent';
 import { GpsRollbackComponent } from './GpsRollback/GpsRollbackComponent';
 import { SearchCloserComponent } from './SearchCloser/SearchCloserComponent';
 import { SearchAreaPanelControlComopnent } from './SearchAreaPanelControl/SearchAreaPanelControlComponent';
+import { SearchAreaFormComponent } from './SearchAreaForm/SearchAreaFormComponent';
 
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
@@ -35,6 +36,7 @@ export const SearchAreaContainer = () => {
           height: isSearchOpen ? safeArea.height / 1.75 : 'auto',
         }}>
         <SearchAreaPanelControlComopnent />
+        {isSearchOpen ? <SearchAreaFormComponent /> : <></>}
       </View>
     </View>
   );
