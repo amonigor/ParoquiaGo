@@ -1,10 +1,10 @@
 import Geolocation from '@react-native-community/geolocation';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import { MapPin } from './MapPin';
-import { useAtom } from 'jotai';
-import { userLocationAtom } from '../../atoms/map';
+import { useAtom, useSetAtom } from 'jotai';
+import { recenterMapAtom, userLocationAtom } from '../../atoms/map';
 
 interface ChurchType {
   id: string;
@@ -16,6 +16,8 @@ interface ChurchType {
 export const MapComponent = () => {
   const [userLocation, setUserLocation] = useAtom(userLocationAtom);
   const [watchPositionId, setWatchPositionId] = useState<number>(0);
+  const setRecenterMap = useSetAtom(recenterMapAtom);
+  const mapRef = useRef<MapView>(null);
 
   const churchList: ChurchType[] = [
     {
@@ -82,12 +84,29 @@ export const MapComponent = () => {
     };
   }, [watchPosition, watchPositionId]);
 
+  useEffect(() => {
+    if (!mapRef.current || !userLocation) {
+      return;
+    }
+    setRecenterMap({
+      fn: () => {
+        mapRef.current?.animateToRegion({
+          latitude: userLocation.latitude,
+          longitude: userLocation.longitude,
+          latitudeDelta: 0.003,
+          longitudeDelta: 0.003,
+        });
+      },
+    });
+  }, [setRecenterMap, userLocation]);
+
   return (
     <MapView
+      ref={mapRef}
       style={{ ...StyleSheet.absoluteFillObject }}
       region={{
-        latitude: userLocation?.latitude ?? -23.96095,
-        longitude: userLocation?.longitude ?? -46.38919,
+        latitude: userLocation?.latitude ?? -23.9468,
+        longitude: userLocation?.longitude ?? -46.322,
         latitudeDelta: 0.003,
         longitudeDelta: 0.003,
       }}

@@ -6,3 +6,4 @@ interface UserLocationType {
 }
 
 export const userLocationAtom = atom<UserLocationType | undefined>(undefined);
+export const recenterMapAtom = atom({ fn: () => {} });

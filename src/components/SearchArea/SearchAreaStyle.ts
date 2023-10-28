@@ -40,6 +40,8 @@ export const styles = StyleSheet.create({
   },
   rightItems: {
     alignSelf: 'flex-end',
+    alignItems: 'center',
     padding: 10,
+    gap: 10,
   },
 });
