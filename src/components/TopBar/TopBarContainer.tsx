@@ -2,6 +2,7 @@ import React from 'react';
 
 import { View } from 'react-native';
 import { MenuButtonComponent } from './MenuButton/MenuButtonComponent';
+import { BookmarksButtonComponent } from './BookmarksButton/BookmarksButtonComponent';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -12,6 +13,7 @@ export const TopBarContainer = () => {
   return (
     <View style={{ ...styles.container, top: insets.top }}>
       <MenuButtonComponent />
+      <BookmarksButtonComponent />
     </View>
   );
 };

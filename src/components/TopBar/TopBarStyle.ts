@@ -5,7 +5,9 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     gap: 10,
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     padding: 10,
   },
 });
