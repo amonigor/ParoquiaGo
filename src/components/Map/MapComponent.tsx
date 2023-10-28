@@ -92,9 +92,9 @@ export const MapComponent = () => {
       return;
     }
     setRecenterMap({
-      fn: () => {
+      fn: hasOffSet => {
         mapRef.current?.animateToRegion({
-          latitude: userLocation.latitude,
+          latitude: userLocation.latitude - (!!hasOffSet ? 0.0013 : 0),
           longitude: userLocation.longitude,
           latitudeDelta: 0.003,
           longitudeDelta: 0.003,
