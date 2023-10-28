@@ -1,7 +1,10 @@
 import React from 'react';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
-import { ParamListBase, useNavigation } from '@react-navigation/native';
+
 import { View, TouchableOpacity, Image } from 'react-native';
+
+import type { DrawerNavigationProp } from '@react-navigation/drawer';
+import { type ParamListBase, useNavigation } from '@react-navigation/native';
+
 import { styles } from './MenuButtonStyle';
 
 export const MenuButtonComponent = () => {

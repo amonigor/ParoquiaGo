@@ -1,6 +1,8 @@
 import React from 'react';
-import type { ImageURISource } from 'react-native';
+
 import { Marker } from 'react-native-maps';
+
+import type { ImageURISource } from 'react-native';
 
 interface MapPinProps {
   latitude: number;

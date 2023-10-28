@@ -1,10 +1,13 @@
 import React from 'react';
+
+import { Image, Text } from 'react-native';
+
 import {
   type DrawerContentComponentProps,
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import { Image, Text } from 'react-native';
+
 import { styles } from './DrawerMenuStyle';
 
 export const DrawerMenuComponent = (props: DrawerContentComponentProps) => {

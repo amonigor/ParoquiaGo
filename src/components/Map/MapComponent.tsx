@@ -1,8 +1,11 @@
-import Geolocation from '@react-native-community/geolocation';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+
 import { StyleSheet } from 'react-native';
+
+import Geolocation from '@react-native-community/geolocation';
 import MapView from 'react-native-maps';
 import { MapPin } from './MapPin';
+
 import { useAtom, useSetAtom } from 'jotai';
 import { recenterMapAtom, userLocationAtom } from '../../atoms/map';
 

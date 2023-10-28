@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { Image, Text, View } from 'react-native';
-import { styles } from './GpsStatusStyle';
+
 import { useAtomValue } from 'jotai';
 import { userLocationAtom } from '../../../atoms/map';
+
+import { styles } from './GpsStatusStyle';
 
 export const GpsStatusComponent = () => {
   const userLocation = useAtomValue(userLocationAtom);

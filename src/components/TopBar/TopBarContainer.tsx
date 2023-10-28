@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { View } from 'react-native';
-import { styles } from './TopBarStyle';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MenuButtonComponent } from './MenuButton/MenuButtonComponent';
+
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { styles } from './TopBarStyle';
 
 export const TopBarContainer = () => {
   const insets = useSafeAreaInsets();

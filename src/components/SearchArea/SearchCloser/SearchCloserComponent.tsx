@@ -1,6 +1,7 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Text, View } from 'react-native';
+
+import { Text, View, TouchableOpacity } from 'react-native';
+
 import { styles } from './SearchCloserStyle';
 
 export const SearchCloserComponent = () => {

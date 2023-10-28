@@ -1,11 +1,15 @@
 import React from 'react';
+
 import { Text, View } from 'react-native';
+
 import { GpsStatusComponent } from './GpsStatus/GpsStatusComponent';
-import { styles } from './SearchAreaStyle';
 import { GpsRollbackComponent } from './GpsRollback/GpsRollbackComponent';
+import { SearchCloserComponent } from './SearchCloser/SearchCloserComponent';
+
 import { useAtomValue } from 'jotai';
 import { userLocationAtom } from '../../atoms/map';
-import { SearchCloserComponent } from './SearchCloser/SearchCloserComponent';
+
+import { styles } from './SearchAreaStyle';
 
 export const SearchAreaContainer = () => {
   const userLocation = useAtomValue(userLocationAtom);
