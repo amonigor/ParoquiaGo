@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     height: '100%',
   },
   image: {
+    marginTop: 30,
     marginBottom: 30,
     alignSelf: 'center',
   },

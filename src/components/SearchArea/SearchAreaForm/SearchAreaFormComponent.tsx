@@ -13,6 +13,7 @@ export const SearchAreaFormComponent = () => {
         value={searchText}
         onChangeText={setSearchText}
         placeholder="Nome ou endereço da paróquia"
+        placeholderTextColor="#95B0BB"
       />
     </View>
   );
