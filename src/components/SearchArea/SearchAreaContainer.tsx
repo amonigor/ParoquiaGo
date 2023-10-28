@@ -1,29 +1,24 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { GpsStatusComponent } from './GpsStatus/GpsStatusComponent';
 import { GpsRollbackComponent } from './GpsRollback/GpsRollbackComponent';
 import { SearchCloserComponent } from './SearchCloser/SearchCloserComponent';
+import { SearchAreaPanelControlComopnent } from './SearchAreaPanelControl/SearchAreaPanelControlComponent';
 
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
-import { useAtom, useAtomValue } from 'jotai';
-import { recenterMapAtom, userLocationAtom } from '../../atoms/map';
+import { useAtomValue } from 'jotai';
+import { userLocationAtom } from '../../atoms/map';
 import { isSearchOpenAtom } from '../../atoms/searchArea';
 
 import { styles } from './SearchAreaStyle';
 
 export const SearchAreaContainer = () => {
   const userLocation = useAtomValue(userLocationAtom);
-  const { fn: recenterMap } = useAtomValue(recenterMapAtom);
-  const [isSearchOpen, setIsSearchOpen] = useAtom(isSearchOpenAtom);
+  const isSearchOpen = useAtomValue(isSearchOpenAtom);
   const safeArea = useSafeAreaFrame();
-
-  const handleClick = useCallback(() => {
-    setIsSearchOpen(!isSearchOpen);
-    recenterMap(!isSearchOpen);
-  }, [isSearchOpen, recenterMap, setIsSearchOpen]);
 
   return (
     <View style={styles.container}>
@@ -31,15 +26,15 @@ export const SearchAreaContainer = () => {
         <GpsStatusComponent />
         {!!userLocation ? <GpsRollbackComponent /> : <></>}
       </View>
-      {!!userLocation ? <SearchCloserComponent /> : <></>}
+      {!!userLocation && !isSearchOpen ? <SearchCloserComponent /> : <></>}
       <View
         // eslint-disable-next-line react-native/no-inline-styles
         style={{
           ...styles.searchArea,
           ...styles.withShadows,
-          height: isSearchOpen ? safeArea.height / 2 : 'auto',
+          height: isSearchOpen ? safeArea.height / 1.75 : 'auto',
         }}>
-        <Text onPress={handleClick}>Pesquisa Avançada</Text>
+        <SearchAreaPanelControlComopnent />
       </View>
     </View>
   );
