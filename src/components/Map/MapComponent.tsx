@@ -70,7 +70,7 @@ export const MapComponent = () => {
           });
         },
         () => {},
-        { enableHighAccuracy: true, timeout: 1500, maximumAge: 10000 },
+        { enableHighAccuracy: false, timeout: 1500, maximumAge: 10000 },
       ),
     );
   }, [setUserLocation]);

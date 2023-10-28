@@ -25,5 +25,6 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontWeight: 'bold',
+    color: '#000000',
   },
 });
