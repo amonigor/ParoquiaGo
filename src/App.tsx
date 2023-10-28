@@ -13,7 +13,11 @@ const styles = StyleSheet.create({
 const App = (): JSX.Element => {
   return (
     <SafeAreaView>
-      <StatusBar barStyle={'dark-content'} />
+      <StatusBar
+        barStyle={'dark-content'}
+        translucent
+        backgroundColor="transparent"
+      />
       <View style={styles.container}>
         <MapComponent />
         <SearchAreaContainer />
