@@ -1,4 +1,22 @@
-### Requisitos para desenvolvimento:
+# ParoquiaGo
+### Integrantes do grupo
+- Bruno Luis ([LinkedIn](https://www.linkedin.com/in/brunolass/))
+- Gabriel Lima ([LinkedIn](https://www.linkedin.com/in/gabriel-lima-0101/))
+- Igor Amon ([LinkedIn](https://www.linkedin.com/in/igor-amon/))
+- Jorge Fernando ([LinkedIn](https://www.linkedin.com/in/jorge-fernando-pereira-2348811a0/))
+- Lucas Paraiso ([LinkedIn](https://www.linkedin.com/in/lucasparaiso/))
+- Samara Jaques ([LinkedIn](https://www.linkedin.com/in/samarajaques/))
+- Victor Filippi ([LinkedIn](https://www.linkedin.com/in/victorfilippi/))
+
+### Sobre o projeto
+O aplicativo se chama “Paróquia GO” fazendo referência à sua principal função de geolocalização das paróquias administradas pela diocese de Santos. Quando o usuário acessar o aplicativo já estará tendo a visão do mapa do local de onde ele estiver, podendo fazer a busca da paróquia mais próxima ou digitando também o nome/endereço da paróquia desejada, o aplicativo irá retornar as informações sobre a respectiva instituição além de oferecer um botão para gerar uma rota até o local desejado, abrindo assim um aplicativo de localização preferido do usuário para tal função. Além dessa funcionalidade principal, o aplicativo fornecerá áreas dedicadas para notícias e história da diocese de Santos, buscando essas informações da API utilizada atualmente no site da instituição.
+
+<br><br>
+
+## Contribua com o projeto!
+A seguir segue uma lista de tópicos para você conseguir rodar o projeto localmente e contribuir com o projeto.
+
+### Requisitos para desenvolvimento
 - Java 17
 - Android SDK 33 (Tiramisu)
 - Node v20.5.1 / npm 9.8.0
@@ -15,7 +33,7 @@ Para conseguir contribuir com o projeto, é necessário algumas configurações 
     npm i
     ```
 
-### Para rodar o projeto localmente:
+### Para rodar o projeto localmente
 Verificar se cumpre com os requisitos para o desenvolvimento, se sim basta rodar o comando abaixo e iniciar o emulador do android.
 
 ```bash
