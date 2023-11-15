@@ -9,7 +9,8 @@
 - Victor Filippi ([LinkedIn](https://www.linkedin.com/in/victorfilippi/))
 
 ### Sobre o projeto
-O aplicativo se chama “Paróquia GO” fazendo referência à sua principal função de geolocalização das paróquias administradas pela diocese de Santos. Quando o usuário acessar o aplicativo já estará tendo a visão do mapa do local de onde ele estiver, podendo fazer a busca da paróquia mais próxima ou digitando também o nome/endereço da paróquia desejada, o aplicativo irá retornar as informações sobre a respectiva instituição além de oferecer um botão para gerar uma rota até o local desejado, abrindo assim um aplicativo de localização preferido do usuário para tal função. Além dessa funcionalidade principal, o aplicativo fornecerá áreas dedicadas para notícias e história da diocese de Santos, buscando essas informações da API utilizada atualmente no site da instituição.
+O aplicativo se chama “Paróquia GO” fazendo referência à sua principal função de geolocalização das paróquias administradas pela diocese de Santos. Quando o usuário acessar o aplicativo já estará tendo a visão do mapa do local de onde ele estiver, podendo fazer a busca da paróquia mais próxima ou digitando também o nome/endereço da paróquia desejada, o aplicativo irá retornar as informações sobre a respectiva instituição além de oferecer um botão para gerar uma rota até o local desejado, abrindo assim um aplicativo de localização preferido do usuário para tal função. Além dessa funcionalidade principal, o aplicativo fornecerá áreas dedicadas para notícias e história da diocese de Santos, buscando essas informações da API utilizada atualmente no site da instituição.<br>
+Acesse a [wiki](https://github.com/amonigor/ParoquiaGo/wiki) do projeto para mais informações.
 
 <br><br>
 
