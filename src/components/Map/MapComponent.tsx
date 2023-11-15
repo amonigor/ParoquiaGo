@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { StyleSheet } from 'react-native';
 
@@ -6,15 +12,10 @@ import Geolocation from '@react-native-community/geolocation';
 import MapView from 'react-native-maps';
 import { MapPin } from './MapPin';
 
+import { useChurches } from '../../hooks/useChurches';
+
 import { useAtom, useSetAtom } from 'jotai';
 import { recenterMapAtom, userLocationAtom } from '../../atoms/map';
-
-interface ChurchType {
-  id: string;
-  label: string;
-  latitude: number;
-  longitude: number;
-}
 
 export const MapComponent = () => {
   const [userLocation, setUserLocation] = useAtom(userLocationAtom);
@@ -22,34 +23,19 @@ export const MapComponent = () => {
   const setRecenterMap = useSetAtom(recenterMapAtom);
   const mapRef = useRef<MapView>(null);
 
-  const churchList: ChurchType[] = [
-    {
-      id: 'a07dd53e-7382-5443-b841-db84b34051b9',
-      label: 'Igreja 1',
-      latitude: -23.9606,
-      longitude: -46.3887,
-    },
-    {
-      id: '38e383dd-a184-530b-afdc-a75a4c23499d',
-      label: 'Igreja 2',
-      latitude: -23.9603,
-      longitude: -46.3895,
-    },
-    {
-      id: '9e3cab7a-a74a-5ee5-bd80-f8cdfcd9bfde',
-      label: 'Igreja 3',
-      latitude: -23.9616,
-      longitude: -46.3896,
-    },
-  ];
+  const { data: churchData, isLoading } = useChurches();
+  const churchList = useMemo(() => {
+    if (!churchData || isLoading) return [];
+    return churchData.data;
+  }, [churchData, isLoading]);
 
   const getChurchListComponent = (): JSX.Element[] => {
     return churchList.map(church => (
       <MapPin
         key={church.id}
-        label={church.label}
-        latitude={church.latitude}
-        longitude={church.longitude}
+        label={church.name}
+        latitude={church.coordinates.lat}
+        longitude={church.coordinates.lng}
         icon={require('../../assets/images/church-pin.png')}
       />
     ));
@@ -88,9 +74,7 @@ export const MapComponent = () => {
   }, [watchPosition, watchPositionId]);
 
   useEffect(() => {
-    if (!mapRef.current || !userLocation) {
-      return;
-    }
+    if (!mapRef.current || !userLocation) return;
     setRecenterMap({
       fn: hasOffSet => {
         mapRef.current?.animateToRegion({

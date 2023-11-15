@@ -6,5 +6,6 @@ module.exports = {
   ],
   rules: {
     'no-extra-boolean-cast': 0,
+    curly: ['error', 'multi'],
   },
 };
