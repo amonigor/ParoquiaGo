@@ -76,10 +76,14 @@ export const MapComponent = () => {
   useEffect(() => {
     if (!mapRef.current || !userLocation) return;
     setRecenterMap({
-      fn: hasOffSet => {
+      fn: (hasOffSet, coordinates) => {
         mapRef.current?.animateToRegion({
-          latitude: userLocation.latitude - (!!hasOffSet ? 0.0013 : 0),
-          longitude: userLocation.longitude,
+          latitude: !coordinates
+            ? userLocation.latitude - (!!hasOffSet ? 0.0013 : 0)
+            : coordinates.latitude,
+          longitude: !coordinates
+            ? userLocation.longitude
+            : coordinates.longitude,
           latitudeDelta: 0.003,
           longitudeDelta: 0.003,
         });

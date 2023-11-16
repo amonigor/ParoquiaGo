@@ -5,5 +5,12 @@ interface UserLocationType {
   longitude: number;
 }
 
+interface MapCoordinates {
+  latitude: number;
+  longitude: number;
+}
+
 export const userLocationAtom = atom<UserLocationType | undefined>(undefined);
-export const recenterMapAtom = atom({ fn: (_hasOffSet?: boolean) => {} });
+export const recenterMapAtom = atom({
+  fn: (_hasOffSet?: boolean, _coordinates?: MapCoordinates) => {},
+});
