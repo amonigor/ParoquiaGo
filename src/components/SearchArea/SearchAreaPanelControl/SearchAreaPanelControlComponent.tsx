@@ -3,12 +3,13 @@ import React, { useCallback } from 'react';
 import { styles } from './SearchAreaPanelControlStyle';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
-import { useAtom, useAtomValue } from 'jotai';
-import { isSearchOpenAtom } from '../../../atoms/searchArea';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { focusedChurchAtom, isSearchOpenAtom } from '../../../atoms/searchArea';
 import { recenterMapAtom } from '../../../atoms/map';
 
 export const SearchAreaPanelControlComopnent = () => {
   const [isSearchOpen, setIsSearchOpen] = useAtom(isSearchOpenAtom);
+  const setFocusedChurch = useSetAtom(focusedChurchAtom);
   const { fn: recenterMap } = useAtomValue(recenterMapAtom);
 
   const handleOpen = useCallback(() => {
@@ -18,8 +19,9 @@ export const SearchAreaPanelControlComopnent = () => {
 
   const handleClose = useCallback(() => {
     setIsSearchOpen(false);
+    setFocusedChurch(undefined);
     recenterMap();
-  }, [setIsSearchOpen, recenterMap]);
+  }, [setIsSearchOpen, recenterMap, setFocusedChurch]);
 
   return !isSearchOpen ? (
     <TouchableOpacity onPress={handleOpen}>

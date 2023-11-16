@@ -2,19 +2,22 @@ import React, { useCallback, useMemo } from 'react';
 
 import { Text, View, TouchableOpacity } from 'react-native';
 
+import type { Church } from '../../../interfaces/church';
+
 import { useChurches } from '../../../hooks/useChurches';
 
-import { useAtomValue } from 'jotai';
-import { recenterMapAtom, userLocationAtom } from '../../../atoms/map';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { userLocationAtom } from '../../../atoms/map';
+import { focusedChurchAtom, isSearchOpenAtom } from '../../../atoms/searchArea';
 
 import { calcDistance } from '../../../utils/location';
 
 import { styles } from './SearchCloserStyle';
-import { Church } from '../../../interfaces/church';
 
 export const SearchCloserComponent = () => {
   const userLocation = useAtomValue(userLocationAtom);
-  const { fn: recenterMap } = useAtomValue(recenterMapAtom);
+  const setFocusedChurch = useSetAtom(focusedChurchAtom);
+  const setIsSearchOpen = useSetAtom(isSearchOpenAtom);
 
   const { data: churchData, isLoading } = useChurches();
   const churchList = useMemo(() => {
@@ -46,12 +49,9 @@ export const SearchCloserComponent = () => {
 
   const getClosestChurch = useCallback(() => {
     const church = findClosestChurch();
-    if (!!church)
-      recenterMap(false, {
-        latitude: church.coordinates.lat,
-        longitude: church.coordinates.lng,
-      });
-  }, [findClosestChurch, recenterMap]);
+    setFocusedChurch(church);
+    if (!!church) setIsSearchOpen(true);
+  }, [findClosestChurch, setFocusedChurch, setIsSearchOpen]);
 
   return (
     <TouchableOpacity activeOpacity={0.75} onPress={getClosestChurch}>

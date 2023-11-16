@@ -7,19 +7,26 @@ import { GpsRollbackComponent } from './GpsRollback/GpsRollbackComponent';
 import { SearchCloserComponent } from './SearchCloser/SearchCloserComponent';
 import { SearchAreaPanelControlComopnent } from './SearchAreaPanelControl/SearchAreaPanelControlComponent';
 import { SearchAreaFormComponent } from './SearchAreaForm/SearchAreaFormComponent';
+import { FocusedChurchComponent } from './FocusedChurch/FocusedChurchComponent';
 
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import { useAtomValue } from 'jotai';
 import { userLocationAtom } from '../../atoms/map';
-import { isSearchOpenAtom } from '../../atoms/searchArea';
+import { focusedChurchAtom, isSearchOpenAtom } from '../../atoms/searchArea';
 
 import { styles } from './SearchAreaStyle';
 
 export const SearchAreaContainer = () => {
   const userLocation = useAtomValue(userLocationAtom);
   const isSearchOpen = useAtomValue(isSearchOpenAtom);
+  const focusedChurch = useAtomValue(focusedChurchAtom);
   const safeArea = useSafeAreaFrame();
+
+  const activeArea = () => {
+    if (!!focusedChurch) return <FocusedChurchComponent />;
+    return <SearchAreaFormComponent />;
+  };
 
   return (
     <View style={styles.container}>
@@ -33,10 +40,11 @@ export const SearchAreaContainer = () => {
         style={{
           ...styles.searchArea,
           ...styles.withShadows,
-          height: isSearchOpen ? safeArea.height / 1.75 : 'auto',
+          height:
+            isSearchOpen && !focusedChurch ? safeArea.height / 1.75 : 'auto',
         }}>
         <SearchAreaPanelControlComopnent />
-        {isSearchOpen ? <SearchAreaFormComponent /> : <></>}
+        {isSearchOpen ? activeArea() : <></>}
       </View>
     </View>
   );
