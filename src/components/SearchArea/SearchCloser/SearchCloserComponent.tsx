@@ -54,9 +54,16 @@ export const SearchCloserComponent = () => {
   }, [findClosestChurch, setFocusedChurch, setIsSearchOpen]);
 
   return (
-    <TouchableOpacity activeOpacity={0.75} onPress={getClosestChurch}>
+    <TouchableOpacity
+      activeOpacity={0.75}
+      onPress={getClosestChurch}
+      disabled={isLoading || !churchList.length}>
       <View style={styles.button}>
-        <Text style={styles.buttonText}>Buscar mais próximo</Text>
+        {isLoading || !churchList.length ? (
+          <Text style={styles.buttonText}>Carregando paróquias...</Text>
+        ) : (
+          <Text style={styles.buttonText}>Buscar mais próximo</Text>
+        )}
       </View>
     </TouchableOpacity>
   );
