@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
   info: {
     flex: 1,
     gap: 10,
+    paddingRight: 10,
   },
   name: {
     fontSize: 16,

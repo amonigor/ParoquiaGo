@@ -80,7 +80,7 @@ export const MapComponent = () => {
         mapRef.current?.animateToRegion({
           latitude:
             (!coordinates ? userLocation.latitude : coordinates.latitude) -
-            (!!hasOffSet ? 0.0013 : 0),
+            (!!hasOffSet ? 0.0005 : 0),
           longitude: !coordinates
             ? userLocation.longitude
             : coordinates.longitude,
