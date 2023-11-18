@@ -1,6 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  ImageSourcePropType,
+  Linking,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import { useUrls } from '../../../hooks/useUrls';
 
@@ -14,6 +21,7 @@ export const FocusedChurchComponent = () => {
   const church = useAtomValue(focusedChurchAtom);
   const { fn: recenterMap } = useAtomValue(recenterMapAtom);
   const { dioceseUrl } = useUrls();
+  const [churchImg, setChurchImg] = useState<ImageSourcePropType>();
 
   useEffect(() => {
     if (!church) return;
@@ -24,17 +32,22 @@ export const FocusedChurchComponent = () => {
     });
   }, [church, recenterMap]);
 
-  return church ? (
+  useEffect(() => {
+    if (!church) return;
+    setChurchImg({ uri: `${dioceseUrl}/${church.images.image_intro}` });
+  }, [church, dioceseUrl]);
+
+  return church && churchImg ? (
     <>
       <View style={styles.churchContainer}>
-        {!!church.images.image_intro.length ? (
-          <Image
-            style={styles.coverImg}
-            source={{ uri: `${dioceseUrl}/${church.images.image_intro}` }}
-          />
-        ) : (
-          <></>
-        )}
+        <Image
+          style={styles.coverImg}
+          defaultSource={require('../../../assets/images/church.png')}
+          source={churchImg}
+          onError={() => {
+            setChurchImg(require('../../../assets/images/church.png'));
+          }}
+        />
         <View style={styles.info}>
           <Text style={styles.name}>{church.name}</Text>
           <View style={styles.detailsContainer}>
