@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import type { Church } from '../../interfaces/church';
+
 import {
   Image,
   ImageSourcePropType,
@@ -9,55 +11,51 @@ import {
   View,
 } from 'react-native';
 
-import { useUrls } from '../../../hooks/useUrls';
-
-import { useAtomValue } from 'jotai';
-import { focusedChurchAtom } from '../../../atoms/searchArea';
-import { recenterMapAtom } from '../../../atoms/map';
+import { useUrls } from '../../hooks/useUrls';
 
 import { styles } from './ChurchCardStyle';
 
-export const FocusedChurchComponent = () => {
-  const church = useAtomValue(focusedChurchAtom);
-  const { fn: recenterMap } = useAtomValue(recenterMapAtom);
+interface ChurchCardProps {
+  church: Church;
+  onPress?: () => void;
+}
+
+export const ChurchCardComponent = ({ church, onPress }: ChurchCardProps) => {
   const { dioceseUrl } = useUrls();
   const [churchImg, setChurchImg] = useState<ImageSourcePropType>();
-
-  useEffect(() => {
-    if (!church) return;
-
-    recenterMap(true, {
-      latitude: church.coordinates.lat,
-      longitude: church.coordinates.lng,
-    });
-  }, [church, recenterMap]);
 
   useEffect(() => {
     if (!church) return;
     setChurchImg({ uri: `${dioceseUrl}/${church.images.image_intro}` });
   }, [church, dioceseUrl]);
 
-  return church && churchImg ? (
+  return (
     <>
       <View style={styles.churchContainer}>
-        <Image
-          style={styles.coverImg}
-          defaultSource={require('../../../assets/images/church.png')}
-          source={churchImg}
-          onError={() => {
-            setChurchImg(require('../../../assets/images/church.png'));
-          }}
-        />
-        <View style={styles.info}>
-          <Text style={styles.name}>{church.name}</Text>
-          <View style={styles.detailsContainer}>
-            <Image
-              style={styles.icon}
-              source={require('../../../assets/images/church-pin-blue.png')}
-            />
-            <Text style={styles.address}>{church.address}</Text>
+        {churchImg ? (
+          <Image
+            style={styles.coverImg}
+            defaultSource={require('../../assets/images/church.png')}
+            source={churchImg}
+            onError={() => {
+              setChurchImg(require('../../assets/images/church.png'));
+            }}
+          />
+        ) : (
+          <></>
+        )}
+        <TouchableOpacity activeOpacity={1} onPress={onPress}>
+          <View style={styles.info}>
+            <Text style={styles.name}>{church.name}</Text>
+            <View style={styles.detailsContainer}>
+              <Image
+                style={styles.icon}
+                source={require('../../assets/images/church-pin-blue.png')}
+              />
+              <Text style={styles.address}>{church.address}</Text>
+            </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
@@ -72,7 +70,7 @@ export const FocusedChurchComponent = () => {
               Buscar rotas
             </Text>
             <Image
-              source={require('../../../assets/images/open-link-white.png')}
+              source={require('../../assets/images/open-link-white.png')}
               style={styles.icon}
             />
           </View>
@@ -81,14 +79,12 @@ export const FocusedChurchComponent = () => {
           <View style={styles.button}>
             <Text style={styles.buttonText}>Salvar</Text>
             <Image
-              source={require('../../../assets/images/bookmark-grey.png')}
+              source={require('../../assets/images/bookmark-grey.png')}
               style={styles.icon}
             />
           </View>
         </TouchableOpacity>
       </View>
     </>
-  ) : (
-    <></>
   );
 };

@@ -7,7 +7,7 @@ import { GpsRollbackComponent } from './GpsRollback/GpsRollbackComponent';
 import { SearchCloserComponent } from './SearchCloser/SearchCloserComponent';
 import { SearchAreaPanelControlComopnent } from './SearchAreaPanelControl/SearchAreaPanelControlComponent';
 import { SearchAreaFormComponent } from './SearchAreaForm/SearchAreaFormComponent';
-import { FocusedChurchComponent } from './FocusedChurch/FocusedChurchComponent';
+import { FocusedChurchComponent } from '../FocusedChurchComponent';
 
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
