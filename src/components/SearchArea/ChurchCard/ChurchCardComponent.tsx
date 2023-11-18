@@ -15,7 +15,7 @@ import { useAtomValue } from 'jotai';
 import { focusedChurchAtom } from '../../../atoms/searchArea';
 import { recenterMapAtom } from '../../../atoms/map';
 
-import { styles } from './FocusedChurchStyle';
+import { styles } from './ChurchCardStyle';
 
 export const FocusedChurchComponent = () => {
   const church = useAtomValue(focusedChurchAtom);
