@@ -17,12 +17,36 @@ import { styles } from './ChurchCardStyle';
 
 interface ChurchCardProps {
   church: Church;
+  small?: boolean;
   onPress?: () => void;
 }
 
-export const ChurchCardComponent = ({ church, onPress }: ChurchCardProps) => {
+export const ChurchCardComponent = ({
+  church,
+  small,
+  onPress,
+}: ChurchCardProps) => {
   const { dioceseUrl } = useUrls();
   const [churchImg, setChurchImg] = useState<ImageSourcePropType>();
+
+  const computedStyle = !small
+    ? {
+        churchContainer: styles.churchContainer,
+        leftItems: styles.leftItems,
+        coverImg: styles.coverImg,
+        rightItems: styles.rightItems,
+        address: styles.address,
+      }
+    : {
+        churchContainer: {
+          ...styles.churchContainer,
+          ...styles.churchContainerSm,
+        },
+        leftItems: { ...styles.leftItems, ...styles.leftItemsSm },
+        coverImg: { ...styles.coverImg, ...styles.coverImgSm },
+        rightItems: { ...styles.rightItems, ...styles.rightItemsSm },
+        address: { ...styles.address, ...styles.addressSm },
+      };
 
   useEffect(() => {
     if (!church) return;
@@ -31,60 +55,81 @@ export const ChurchCardComponent = ({ church, onPress }: ChurchCardProps) => {
 
   return (
     <>
-      <View style={styles.churchContainer}>
-        {churchImg ? (
-          <Image
-            style={styles.coverImg}
-            defaultSource={require('../../assets/images/church.png')}
-            source={churchImg}
-            onError={() => {
-              setChurchImg(require('../../assets/images/church.png'));
-            }}
-          />
-        ) : (
-          <></>
-        )}
-        <TouchableOpacity activeOpacity={1} onPress={onPress}>
-          <View style={styles.info}>
-            <Text style={styles.name}>{church.name}</Text>
-            <View style={styles.detailsContainer}>
-              <Image
-                style={styles.icon}
-                source={require('../../assets/images/church-pin-blue.png')}
-              />
-              <Text style={styles.address}>{church.address}</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonsContainer}>
+      <View style={computedStyle.churchContainer}>
+        <View style={computedStyle.leftItems}>
+          {churchImg ? (
+            <Image
+              style={computedStyle.coverImg}
+              defaultSource={require('../../assets/images/church.png')}
+              source={churchImg}
+              onError={() => {
+                setChurchImg(require('../../assets/images/church.png'));
+              }}
+            />
+          ) : (
+            <></>
+          )}
+          {small ? (
+            <TouchableOpacity activeOpacity={0.75} onPress={() => {}}>
+              <View style={styles.buttonSm}>
+                <Text style={styles.buttonTextSm}>Salvar</Text>
+                <Image
+                  source={require('../../assets/images/bookmark-grey.png')}
+                  style={styles.iconSm}
+                />
+              </View>
+            </TouchableOpacity>
+          ) : (
+            <></>
+          )}
+        </View>
         <TouchableOpacity
-          activeOpacity={0.75}
-          onPress={() =>
-            Linking.openURL(
-              `google.navigation:q=${church.coordinates.lat}+${church.coordinates.lng}`,
-            )
-          }>
-          <View style={{ ...styles.button, ...styles.searchButton }}>
-            <Text style={{ ...styles.buttonText, ...styles.searchButtonText }}>
-              Buscar rotas
-            </Text>
+          style={computedStyle.rightItems}
+          activeOpacity={1}
+          onPress={onPress}>
+          <Text style={styles.name}>{church.name}</Text>
+          <View style={styles.detailsContainer}>
             <Image
-              source={require('../../assets/images/open-link-white.png')}
               style={styles.icon}
+              source={require('../../assets/images/church-pin-blue.png')}
             />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.75} onPress={() => {}}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Salvar</Text>
-            <Image
-              source={require('../../assets/images/bookmark-grey.png')}
-              style={styles.icon}
-            />
+            <Text style={computedStyle.address}>{church.address}</Text>
           </View>
         </TouchableOpacity>
       </View>
+      {!small ? (
+        <View style={styles.buttonsContainer}>
+          <TouchableOpacity
+            activeOpacity={0.75}
+            onPress={() =>
+              Linking.openURL(
+                `google.navigation:q=${church.coordinates.lat}+${church.coordinates.lng}`,
+              )
+            }>
+            <View style={{ ...styles.button, ...styles.searchButton }}>
+              <Text
+                style={{ ...styles.buttonText, ...styles.searchButtonText }}>
+                Buscar rotas
+              </Text>
+              <Image
+                source={require('../../assets/images/open-link-white.png')}
+                style={styles.icon}
+              />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.75} onPress={() => {}}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Salvar</Text>
+              <Image
+                source={require('../../assets/images/bookmark-grey.png')}
+                style={styles.icon}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
