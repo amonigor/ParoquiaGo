@@ -20,8 +20,7 @@ export const SearchAreaPanelControlComopnent = () => {
   const handleClose = useCallback(() => {
     setIsSearchOpen(false);
     setFocusedChurch(undefined);
-    recenterMap();
-  }, [setIsSearchOpen, recenterMap, setFocusedChurch]);
+  }, [setIsSearchOpen, setFocusedChurch]);
 
   return !isSearchOpen ? (
     <TouchableOpacity onPress={handleOpen}>

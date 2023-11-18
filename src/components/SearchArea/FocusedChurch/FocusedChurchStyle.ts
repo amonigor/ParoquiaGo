@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     paddingBottom: 15,
+    paddingHorizontal: 5,
     marginBottom: 15,
     width: '100%',
     borderBottomColor: '#E8EEF0',
@@ -41,6 +42,7 @@ export const styles = StyleSheet.create({
   address: {
     fontSize: 12,
     color: '#79878D',
+    flexShrink: 1,
   },
   buttonsContainer: {
     display: 'flex',

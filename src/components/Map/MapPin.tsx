@@ -9,9 +9,16 @@ interface MapPinProps {
   longitude: number;
   label: string;
   icon: ImageURISource;
+  onPress: () => void;
 }
 
-export const MapPin = ({ latitude, longitude, label, icon }: MapPinProps) => {
+export const MapPin = ({
+  latitude,
+  longitude,
+  label,
+  icon,
+  onPress,
+}: MapPinProps) => {
   return (
     <Marker
       title={label}
@@ -23,6 +30,7 @@ export const MapPin = ({ latitude, longitude, label, icon }: MapPinProps) => {
       pinColor="#ffaa00"
       flat={true}
       draggable={false}
+      onPress={onPress}
     />
   );
 };

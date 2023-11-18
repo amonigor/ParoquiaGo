@@ -1,18 +1,11 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { StyleSheet } from 'react-native';
 
 import Geolocation from '@react-native-community/geolocation';
 import MapView from 'react-native-maps';
-import { MapPin } from './MapPin';
 
-import { useChurches } from '../../hooks/useChurches';
+import { useChurchList } from '../../hooks/useChurchList';
 
 import { useAtom, useSetAtom } from 'jotai';
 import { recenterMapAtom, userLocationAtom } from '../../atoms/map';
@@ -22,24 +15,7 @@ export const MapComponent = () => {
   const [watchPositionId, setWatchPositionId] = useState<number>(0);
   const setRecenterMap = useSetAtom(recenterMapAtom);
   const mapRef = useRef<MapView>(null);
-
-  const { data: churchData, isLoading } = useChurches();
-  const churchList = useMemo(() => {
-    if (!churchData || isLoading) return [];
-    return churchData.data;
-  }, [churchData, isLoading]);
-
-  const getChurchListComponent = (): JSX.Element[] => {
-    return churchList.map(church => (
-      <MapPin
-        key={church.id}
-        label={church.name}
-        latitude={church.coordinates.lat}
-        longitude={church.coordinates.lng}
-        icon={require('../../assets/images/church-pin.png')}
-      />
-    ));
-  };
+  const churchList = useChurchList();
 
   const setGeolocaltionConfig = () => {
     Geolocation.setRNConfiguration({
@@ -108,7 +84,7 @@ export const MapComponent = () => {
       loadingEnabled={true}
       showsMyLocationButton={false}
       toolbarEnabled={false}>
-      {getChurchListComponent()}
+      {churchList}
     </MapView>
   );
 };
