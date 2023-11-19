@@ -1,19 +1,19 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { styles } from './SearchAreaFormResults';
-import { useChurches } from '../../../hooks/useChurches';
 import { ChurchCardComponent } from '../../ChurchCard/ChurchCardComponent';
 import { Church } from '../../../interfaces/church';
 import { useSetAtom } from 'jotai';
 import { focusedChurchAtom } from '../../../atoms/searchArea';
 
-export const SearchAreaFormResultsComponent = () => {
+interface SearchAreaFormResultsProps {
+  churchList: Church[];
+}
+
+export const SearchAreaFormResultsComponent = ({
+  churchList,
+}: SearchAreaFormResultsProps) => {
   const setFocusedChurch = useSetAtom(focusedChurchAtom);
-  const { data: churchData, isLoading } = useChurches();
-  const churchList = useMemo(() => {
-    if (!churchData || isLoading) return [];
-    return churchData.data;
-  }, [churchData, isLoading]);
 
   const setToFocus = useCallback(
     (church: Church) => {
@@ -22,7 +22,7 @@ export const SearchAreaFormResultsComponent = () => {
     [setFocusedChurch],
   );
 
-  return !churchList || isLoading ? (
+  return !churchList ? (
     <Text style={styles.waitMessage}>Aguarde...</Text>
   ) : (
     <View style={styles.container}>
