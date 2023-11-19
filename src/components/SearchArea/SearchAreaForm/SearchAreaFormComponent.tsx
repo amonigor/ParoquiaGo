@@ -1,10 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { View } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
-import { styles } from './SearchAreaFormStyle';
+
+import type { Church } from '../../../interfaces/church';
+
+import { View, TextInput } from 'react-native';
 import { SearchAreaFormResultsComponent } from './SearchAreaFormResultsComponent';
+
 import { useChurches } from '../../../hooks/useChurches';
-import { Church } from '../../../interfaces/church';
+
+import { styles } from './SearchAreaFormStyle';
 
 export const SearchAreaFormComponent = () => {
   const [searchText, setSearchText] = useState<string>();

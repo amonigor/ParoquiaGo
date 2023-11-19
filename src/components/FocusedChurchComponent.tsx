@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 
+import { ChurchCardComponent } from './ChurchCard/ChurchCardComponent';
+
 import { useAtomValue } from 'jotai';
 import { focusedChurchAtom } from '../atoms/searchArea';
 import { recenterMapAtom } from '../atoms/map';
-import { ChurchCardComponent } from './ChurchCard/ChurchCardComponent';
 
 export const FocusedChurchComponent = () => {
   const church = useAtomValue(focusedChurchAtom);

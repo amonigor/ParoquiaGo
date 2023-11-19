@@ -1,10 +1,14 @@
 import React, { useCallback } from 'react';
+
+import type { Church } from '../../../interfaces/church';
+
 import { ScrollView, Text, View } from 'react-native';
-import { styles } from './SearchAreaFormResults';
 import { ChurchCardComponent } from '../../ChurchCard/ChurchCardComponent';
-import { Church } from '../../../interfaces/church';
+
 import { useSetAtom } from 'jotai';
 import { focusedChurchAtom } from '../../../atoms/searchArea';
+
+import { styles } from './SearchAreaFormResults';
 
 interface SearchAreaFormResultsProps {
   churchList: Church[];

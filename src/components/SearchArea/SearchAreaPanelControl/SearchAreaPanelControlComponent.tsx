@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react';
 
-import { styles } from './SearchAreaPanelControlStyle';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { focusedChurchAtom, isSearchOpenAtom } from '../../../atoms/searchArea';
 import { recenterMapAtom } from '../../../atoms/map';
+
+import { styles } from './SearchAreaPanelControlStyle';
 
 export const SearchAreaPanelControlComopnent = () => {
   const [isSearchOpen, setIsSearchOpen] = useAtom(isSearchOpenAtom);
