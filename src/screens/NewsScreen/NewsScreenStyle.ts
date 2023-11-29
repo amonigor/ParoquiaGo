@@ -7,10 +7,4 @@ export const styles = StyleSheet.create({
     paddingTop: 30,
     paddingBottom: 100,
   },
-  text: {
-    color: '#000000',
-    paddingVertical: 5,
-    textAlign: 'justify',
-    fontSize: 16,
-  },
 });
