@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { View, Text, TouchableOpacity, Linking, Image } from 'react-native';
 import { styles } from './NewsCardStyle';
@@ -10,11 +10,11 @@ interface NewsCardProps {
 }
 
 export const NewsCardComponent = ({ title, link, date }: NewsCardProps) => {
-  const formattedDate = useMemo(() => {
-    return new Intl.DateTimeFormat('pt-BR', {
-      dateStyle: 'short',
-    }).format(new Date(date));
-  }, [date]);
+  // const formattedDate = useMemo(() => {
+  //   return new Intl.DateTimeFormat('pt-BR', {
+  //     dateStyle: 'short',
+  //   }).format(new Date(date));
+  // }, [date]);
 
   return (
     <TouchableOpacity
@@ -37,7 +37,7 @@ export const NewsCardComponent = ({ title, link, date }: NewsCardProps) => {
               style={styles.icon}
               source={require('../../assets/images/calendar.png')}
             />
-            <Text style={styles.text}>{formattedDate}</Text>
+            <Text style={styles.text}>{date}</Text>
           </View>
         </View>
       </View>
