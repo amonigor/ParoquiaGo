@@ -8,6 +8,7 @@ import { drawerItemsOptions } from './components/DrawerMenu/DrawerItemsOptions';
 
 import { HomeScreen } from './screens/HomeScreen';
 import { NewsScreen } from './screens/NewsScreen';
+import { HistoryScreenComponent } from './screens/HistoryScreen/HistoryScreenComponent';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -36,6 +37,11 @@ const App = (): JSX.Element => {
           <Drawer.Screen
             name="Notícias"
             component={NewsScreen}
+            options={drawerItemsOptions}
+          />
+          <Drawer.Screen
+            name="História da diocese"
+            component={HistoryScreenComponent}
             options={drawerItemsOptions}
           />
         </Drawer.Navigator>
