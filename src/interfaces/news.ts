@@ -1,5 +1,5 @@
 export interface News {
-  header: string;
+  title: string;
   link: string;
   date: string;
 }

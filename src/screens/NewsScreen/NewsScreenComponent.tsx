@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { GenericScreen } from '../GenericScreen';
 import { NewsCardComponent } from '../../components/NewsCard/NewsCardComponent';
 
@@ -19,14 +19,20 @@ export const NewsScreenComponent = (): JSX.Element => {
     <GenericScreen title="Notícias">
       <View style={styles.container}>
         <ScrollView>
-          {newsList.map(news => (
-            <NewsCardComponent
-              key={news.header}
-              title={news.header}
-              link={news.link}
-              date={news.date}
-            />
-          ))}
+          {!newsList.length && !isLoading ? (
+            <Text style={styles.message}>Nenhuma notícia cadastrada</Text>
+          ) : !!newsList.length ? (
+            newsList.map(news => (
+              <NewsCardComponent
+                key={`${news.title}${news.link}${news.date}`}
+                title={news.title}
+                link={news.link}
+                date={news.date}
+              />
+            ))
+          ) : (
+            <Text style={styles.message}>Aguarde...</Text>
+          )}
         </ScrollView>
       </View>
     </GenericScreen>

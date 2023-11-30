@@ -7,4 +7,11 @@ export const styles = StyleSheet.create({
     paddingTop: 30,
     paddingBottom: 100,
   },
+  message: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000000',
+    alignSelf: 'center',
+    paddingVertical: 50,
+  },
 });
