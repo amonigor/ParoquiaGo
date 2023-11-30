@@ -32,6 +32,6 @@ export const styles = StyleSheet.create({
   },
   text: {
     color: '#79878D',
-    fontSize: 12,
+    fontSize: 10,
   },
 });
