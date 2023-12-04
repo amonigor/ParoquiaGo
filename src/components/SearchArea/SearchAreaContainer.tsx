@@ -16,6 +16,7 @@ import { userLocationAtom } from '../../atoms/map';
 import { focusedChurchAtom, activeAreaAtom } from '../../atoms/searchArea';
 
 import { styles } from './SearchAreaStyle';
+import { SavedChurcesComponent } from '../SavedChuches/SavedChurchesComponent';
 
 export const SearchAreaContainer = () => {
   const userLocation = useAtomValue(userLocationAtom);
@@ -25,6 +26,7 @@ export const SearchAreaContainer = () => {
 
   const getActiveArea = () => {
     if (!!focusedChurch) return <FocusedChurchComponent />;
+    if (activeArea === 'saved-churches') return <SavedChurcesComponent />;
     return <SearchAreaFormComponent />;
   };
 
