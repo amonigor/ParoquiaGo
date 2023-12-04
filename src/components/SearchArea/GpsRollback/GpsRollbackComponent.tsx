@@ -4,20 +4,20 @@ import { Image, TouchableOpacity, View } from 'react-native';
 
 import { useAtomValue, useSetAtom } from 'jotai';
 import { recenterMapAtom } from '../../../atoms/map';
-import { focusedChurchAtom, isSearchOpenAtom } from '../../../atoms/searchArea';
+import { activeAreaAtom, focusedChurchAtom } from '../../../atoms/searchArea';
 
 import { styles } from './GpsRollbackStyle';
 
 export const GpsRollbackComponent = () => {
   const { fn: recenterMap } = useAtomValue(recenterMapAtom);
-  const setIsSearchOpen = useSetAtom(isSearchOpenAtom);
+  const setActiveArea = useSetAtom(activeAreaAtom);
   const setFocusedChurch = useSetAtom(focusedChurchAtom);
 
   const handleRollback = useCallback(() => {
-    setIsSearchOpen(false);
+    setActiveArea(undefined);
     setFocusedChurch(undefined);
     recenterMap();
-  }, [recenterMap, setIsSearchOpen, setFocusedChurch]);
+  }, [recenterMap, setActiveArea, setFocusedChurch]);
 
   return (
     <TouchableOpacity activeOpacity={0.75} onPress={handleRollback}>

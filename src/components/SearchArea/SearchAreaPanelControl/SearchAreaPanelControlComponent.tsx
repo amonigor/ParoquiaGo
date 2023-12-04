@@ -3,27 +3,27 @@ import React, { useCallback } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { focusedChurchAtom, isSearchOpenAtom } from '../../../atoms/searchArea';
+import { activeAreaAtom, focusedChurchAtom } from '../../../atoms/searchArea';
 import { recenterMapAtom } from '../../../atoms/map';
 
 import { styles } from './SearchAreaPanelControlStyle';
 
 export const SearchAreaPanelControlComopnent = () => {
-  const [isSearchOpen, setIsSearchOpen] = useAtom(isSearchOpenAtom);
+  const [activeArea, setActiveArea] = useAtom(activeAreaAtom);
   const setFocusedChurch = useSetAtom(focusedChurchAtom);
   const { fn: recenterMap } = useAtomValue(recenterMapAtom);
 
   const handleOpen = useCallback(() => {
-    setIsSearchOpen(true);
+    setActiveArea('search-form');
     recenterMap(true);
-  }, [setIsSearchOpen, recenterMap]);
+  }, [setActiveArea, recenterMap]);
 
   const handleClose = useCallback(() => {
-    setIsSearchOpen(false);
+    setActiveArea(undefined);
     setFocusedChurch(undefined);
-  }, [setIsSearchOpen, setFocusedChurch]);
+  }, [setActiveArea, setFocusedChurch]);
 
-  return !isSearchOpen ? (
+  return !activeArea ? (
     <TouchableOpacity onPress={handleOpen}>
       <View style={styles.openPanel}>
         <Text style={styles.openPanelText}>Pesquisa avançada</Text>

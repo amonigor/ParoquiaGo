@@ -8,7 +8,7 @@ import { useChurches } from '../../../hooks/useChurches';
 
 import { useAtomValue, useSetAtom } from 'jotai';
 import { userLocationAtom } from '../../../atoms/map';
-import { focusedChurchAtom, isSearchOpenAtom } from '../../../atoms/searchArea';
+import { activeAreaAtom, focusedChurchAtom } from '../../../atoms/searchArea';
 
 import { calcDistance } from '../../../utils/location';
 
@@ -17,7 +17,7 @@ import { styles } from './SearchCloserStyle';
 export const SearchCloserComponent = () => {
   const userLocation = useAtomValue(userLocationAtom);
   const setFocusedChurch = useSetAtom(focusedChurchAtom);
-  const setIsSearchOpen = useSetAtom(isSearchOpenAtom);
+  const setActiveArea = useSetAtom(activeAreaAtom);
 
   const { data: churchData, isLoading } = useChurches();
   const churchList = useMemo(() => {
@@ -50,8 +50,8 @@ export const SearchCloserComponent = () => {
   const getClosestChurch = useCallback(() => {
     const church = findClosestChurch();
     setFocusedChurch(church);
-    if (!!church) setIsSearchOpen(true);
-  }, [findClosestChurch, setFocusedChurch, setIsSearchOpen]);
+    if (!!church) setActiveArea('search-form');
+  }, [findClosestChurch, setFocusedChurch, setActiveArea]);
 
   return (
     <TouchableOpacity

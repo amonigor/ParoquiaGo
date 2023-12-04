@@ -6,11 +6,11 @@ import { MapPin } from '../components/Map/MapPin';
 
 import { useChurches } from './useChurches';
 import { useSetAtom } from 'jotai';
-import { focusedChurchAtom, isSearchOpenAtom } from '../atoms/searchArea';
+import { activeAreaAtom, focusedChurchAtom } from '../atoms/searchArea';
 
 export const useChurchList = () => {
   const setFocusedChurch = useSetAtom(focusedChurchAtom);
-  const setIsSearchOpen = useSetAtom(isSearchOpenAtom);
+  const setActiveArea = useSetAtom(activeAreaAtom);
   const { data: churchData, isLoading } = useChurches();
   const churchList = useMemo(() => {
     if (!churchData || isLoading) return [];
@@ -20,9 +20,9 @@ export const useChurchList = () => {
   const openChurch = useCallback(
     (church: Church) => {
       setFocusedChurch(church);
-      setIsSearchOpen(true);
+      setActiveArea('search-form');
     },
-    [setFocusedChurch, setIsSearchOpen],
+    [setFocusedChurch, setActiveArea],
   );
 
   return churchList.map(church => (

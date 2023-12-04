@@ -13,17 +13,17 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import { useAtomValue } from 'jotai';
 import { userLocationAtom } from '../../atoms/map';
-import { focusedChurchAtom, isSearchOpenAtom } from '../../atoms/searchArea';
+import { focusedChurchAtom, activeAreaAtom } from '../../atoms/searchArea';
 
 import { styles } from './SearchAreaStyle';
 
 export const SearchAreaContainer = () => {
   const userLocation = useAtomValue(userLocationAtom);
-  const isSearchOpen = useAtomValue(isSearchOpenAtom);
+  const activeArea = useAtomValue(activeAreaAtom);
   const focusedChurch = useAtomValue(focusedChurchAtom);
   const safeArea = useSafeAreaFrame();
 
-  const activeArea = () => {
+  const getActiveArea = () => {
     if (!!focusedChurch) return <FocusedChurchComponent />;
     return <SearchAreaFormComponent />;
   };
@@ -34,17 +34,17 @@ export const SearchAreaContainer = () => {
         <GpsStatusComponent />
         {!!userLocation ? <GpsRollbackComponent /> : <></>}
       </View>
-      {!!userLocation && !isSearchOpen ? <SearchCloserComponent /> : <></>}
+      {!!userLocation && !activeArea ? <SearchCloserComponent /> : <></>}
       <View
         // eslint-disable-next-line react-native/no-inline-styles
         style={{
           ...styles.searchArea,
           ...styles.withShadows,
           height:
-            isSearchOpen && !focusedChurch ? safeArea.height / 1.75 : 'auto',
+            !!activeArea && !focusedChurch ? safeArea.height / 1.75 : 'auto',
         }}>
         <SearchAreaPanelControlComopnent />
-        {isSearchOpen ? activeArea() : <></>}
+        {activeArea ? getActiveArea() : <></>}
       </View>
     </View>
   );
