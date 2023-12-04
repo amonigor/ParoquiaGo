@@ -14,6 +14,7 @@ import {
 import { useUrls } from '../../hooks/useUrls';
 
 import { styles } from './ChurchCardStyle';
+import { useSavedChurches } from '../../hooks/useSavedChurches';
 
 interface ChurchCardProps {
   church: Church;
@@ -28,6 +29,7 @@ export const ChurchCardComponent = ({
 }: ChurchCardProps) => {
   const { dioceseUrl } = useUrls();
   const [churchImg, setChurchImg] = useState<ImageSourcePropType>();
+  const { isChurchSaved, updateChurch } = useSavedChurches();
 
   const computedStyle = !small
     ? {
@@ -70,11 +72,19 @@ export const ChurchCardComponent = ({
             <></>
           )}
           {small ? (
-            <TouchableOpacity activeOpacity={0.75} onPress={() => {}}>
+            <TouchableOpacity
+              activeOpacity={0.75}
+              onPress={() => updateChurch(church.id)}>
               <View style={styles.buttonSm}>
-                <Text style={styles.buttonTextSm}>Salvar</Text>
+                <Text style={styles.buttonTextSm}>
+                  {isChurchSaved(church.id) ? 'Salva' : 'Salvar'}
+                </Text>
                 <Image
-                  source={require('../../assets/images/bookmark-grey.png')}
+                  source={
+                    isChurchSaved(church.id)
+                      ? require('../../assets/images/bookmark-blue-sm.png')
+                      : require('../../assets/images/bookmark-grey.png')
+                  }
                   style={styles.iconSm}
                 />
               </View>
@@ -117,11 +127,19 @@ export const ChurchCardComponent = ({
               />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.75} onPress={() => {}}>
+          <TouchableOpacity
+            activeOpacity={0.75}
+            onPress={() => updateChurch(church.id)}>
             <View style={styles.button}>
-              <Text style={styles.buttonText}>Salvar</Text>
+              <Text style={styles.buttonText}>
+                {isChurchSaved(church.id) ? 'Salva' : 'Salvar'}
+              </Text>
               <Image
-                source={require('../../assets/images/bookmark-grey.png')}
+                source={
+                  isChurchSaved(church.id)
+                    ? require('../../assets/images/bookmark-blue-sm.png')
+                    : require('../../assets/images/bookmark-grey.png')
+                }
                 style={styles.icon}
               />
             </View>

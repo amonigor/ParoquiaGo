@@ -1,5 +1,5 @@
 export interface Church {
-  id: number;
+  id: string;
   address: string;
   coordinates: {
     lat: number;
