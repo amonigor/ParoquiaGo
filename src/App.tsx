@@ -11,6 +11,7 @@ import { NewsScreenComponent } from './screens/NewsScreen/NewsScreenComponent';
 import { HistoryScreenComponent } from './screens/HistoryScreen/HistoryScreenComponent';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SupportScreenComponent } from './screens/SupportScreen/SupportScreenComponent';
 
 const Drawer = createDrawerNavigator();
 const queryClient = new QueryClient({
@@ -42,6 +43,11 @@ const App = (): JSX.Element => {
           <Drawer.Screen
             name="História da diocese"
             component={HistoryScreenComponent}
+            options={drawerItemsOptions}
+          />
+          <Drawer.Screen
+            name="Suporte"
+            component={SupportScreenComponent}
             options={drawerItemsOptions}
           />
         </Drawer.Navigator>
