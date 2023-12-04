@@ -14,7 +14,10 @@ export const useChurchList = () => {
   const { data: churchData, isLoading } = useChurches();
   const churchList = useMemo(() => {
     if (!churchData || isLoading) return [];
-    return churchData.data;
+    return churchData.data.filter(
+      church =>
+        church.coordinates.lat !== null && church.coordinates.lng !== null,
+    );
   }, [churchData, isLoading]);
 
   const openChurch = useCallback(

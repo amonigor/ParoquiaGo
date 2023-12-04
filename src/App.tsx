@@ -31,7 +31,7 @@ const App = (): JSX.Element => {
           screenOptions={{ headerShown: false }}
           drawerContent={DrawerMenuComponent}>
           <Drawer.Screen
-            name="Home"
+            name="Início"
             component={HomeScreen}
             options={drawerItemsOptions}
           />
