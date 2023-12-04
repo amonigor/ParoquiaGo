@@ -37,17 +37,20 @@ export const SavedChurcesComponent = () => {
       Nenhuma paróquia foi adicionada aos favoritos.
     </Text>
   ) : (
-    <View style={styles.container}>
-      <ScrollView style={styles.scrollContainer}>
-        {churchList.map(church => (
-          <ChurchCardComponent
-            key={church.id}
-            church={church}
-            small
-            onPress={() => setToFocus(church)}
-          />
-        ))}
-      </ScrollView>
-    </View>
+    <>
+      <Text style={styles.title}>Salvos</Text>
+      <View style={styles.container}>
+        <ScrollView style={styles.scrollContainer}>
+          {churchList.map(church => (
+            <ChurchCardComponent
+              key={church.id}
+              church={church}
+              small
+              onPress={() => setToFocus(church)}
+            />
+          ))}
+        </ScrollView>
+      </View>
+    </>
   );
 };

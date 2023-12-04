@@ -20,4 +20,10 @@ export const styles = StyleSheet.create({
     paddingVertical: 50,
     paddingHorizontal: 50,
   },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000000',
+    paddingLeft: 10,
+  },
 });

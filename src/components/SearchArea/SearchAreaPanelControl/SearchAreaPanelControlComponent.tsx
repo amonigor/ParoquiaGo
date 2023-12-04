@@ -26,7 +26,7 @@ export const SearchAreaPanelControlComopnent = () => {
   return !activeArea ? (
     <TouchableOpacity onPress={handleOpen}>
       <View style={styles.openPanel}>
-        <Text style={styles.openPanelText}>Pesquisa avançada</Text>
+        <Text style={styles.openPanelText}>Pesquisa</Text>
         <Image
           source={require('../../../assets/images/expand.png')}
           style={styles.panelImage}
