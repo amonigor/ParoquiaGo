@@ -17,11 +17,11 @@ export const SupportScreenComponent = (): JSX.Element => {
             tel="(13) 3228-8882"
           />
           <SupportCardComponent
-            title="Asseosoria de Comuunicação da Diocese dee Santos"
+            title="Asseosoria de Comunicação da Diocese de Santos"
             email="comunicacao.diocesedesantos@gmail.com"
           />
           <SupportCardComponent
-            title="Cúria dioceesana de Santos"
+            title="Cúria diocesana de Santos"
             text="Horário de atendimento da Cúria: 2ª a 6ª - Das 8h as 12h e das 13h as 17h"
             tel="(13) 3228-8888"
             email="certidoes@curiadesantos.com.br"
